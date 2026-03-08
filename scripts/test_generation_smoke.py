@@ -25,12 +25,17 @@ def main():
                        help="ControlNet conditioning strength for structure_guided mode")
     parser.add_argument("--illustration", type=str, default=None,
                        help="Path to illustration file for structure_guided or body_part modes")
+    parser.add_argument("--appearance-prior", type=str, default=None,
+                       help="Path to appearance prior dataset (real crustacean photos)")
     
     args = parser.parse_args()
 
     print("🔬 Scientific Image Generation Pipeline - Smoke Test")
     print("=" * 60)
     print(f"Mode: {args.mode}")
+    print(f"Appearance prior: {args.appearance_prior}")
+    if args.appearance_prior:
+        print("📸 Loading appearance prior dataset...")
     if args.mode in ["structure_guided", "body_part"]:
         print(f"Structure strength: {args.structure_strength}")
         print(f"CLI Illustration argument: {args.illustration}")
@@ -89,7 +94,8 @@ def main():
             seed=42,
             device="cpu",  # Force CPU to avoid CUDA memory issues
             generation_mode=args.mode,
-            structure_strength=args.structure_strength
+            structure_strength=args.structure_strength,
+            appearance_prior_dir=args.appearance_prior
         )
 
         print("✅ Pipeline completed successfully!")
@@ -133,6 +139,19 @@ def main():
         print(f"5️⃣  Structure conditioning used: {'Yes' if structure_used else 'No'}")
         print(f"6️⃣  Body part generation: {'Yes' if body_part_used else 'No'}")
         
+        # Show appearance conditioning info
+        generation_config = metadata.get("generation_config", {})
+        appearance_prior_used = generation_config.get("appearance_prior_used", False)
+        appearance_prior_dataset = generation_config.get("appearance_prior_dataset", None)
+        reference_images_sampled = generation_config.get("reference_images_sampled", 0)
+        color_palette_used = generation_config.get("color_palette_used", [])
+        print(f"7️⃣  Appearance prior used: {'Yes' if appearance_prior_used else 'No'}")
+        if appearance_prior_dataset:
+            print(f"   Appearance prior dataset: {appearance_prior_dataset}")
+            print(f"   Reference images sampled: {reference_images_sampled}")
+            if color_palette_used:
+                print(f"   Color palette used: {color_palette_used}")
+        
         # Show conditioning details
         if args.mode in ["structure_guided", "body_part"]:
             print(f"   Illustration provided: {conditioning_status.get('illustration_provided', False)}")
@@ -144,7 +163,7 @@ def main():
         # Show body part info if available
         if body_part_used and "body_part" in specimen:
             body_part_info = specimen["body_part"]
-            print(f"7️⃣  Detected body part: {body_part_info.get('identifier', 'unknown')} ({body_part_info.get('description', 'unknown')})")
+            print(f"8️⃣  Detected body part: {body_part_info.get('identifier', 'unknown')} ({body_part_info.get('description', 'unknown')})")
 
         print()
         print("🎉 Smoke test completed successfully!")
