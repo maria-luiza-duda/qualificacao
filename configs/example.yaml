@@ -1,0 +1,11 @@
+project: campylaspis
+data:
+  path: data/
+  input_pattern: "*.csv"
+params:
+  seed: 42
+  learning_rate: 0.01
+  epochs: 10
+logging:
+  level: INFO
+  dir: logs/
