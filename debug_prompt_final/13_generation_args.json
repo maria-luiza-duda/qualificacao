@@ -1,0 +1,14 @@
+{
+  "prompt": "Scientific macro-photographic reconstruction of Campylaspis aculeata in strict lateral view.\nAnatomy must strictly match the scientific illustration: preserve contour, appendage count, segmentation, and ornamentation.\nMorphological details:\nCarapace: A little more than twice as\nPseudorostrum: Two-ninths of total\nPereopod 2: Basis about half",
+  "negative_prompt": "blurry, low quality, distorted, deformed, ugly, disfigured, cartoon, anime, text, watermark",
+  "controlnet_conditioning_scale": 1.0,
+  "strength": 0.4,
+  "guidance_scale": 7.5,
+  "num_inference_steps": 20,
+  "seed": 42,
+  "image_size": [
+    512,
+    512
+  ],
+  "token_count": 76
+}

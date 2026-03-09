@@ -141,3 +141,37 @@ class ScientificPromptProcessor:
         ])
         
         return "\n".join(prompt_parts)
+    
+    def build_part_prompt(self, species: str, body_part: str, body_part_description: str) -> str:
+        """
+        Build a body-part specific prompt for anatomically accurate generation.
+        
+        Args:
+            species: Species name (e.g., "aculeata")
+            body_part: Body part identifier (e.g., "pereopod_1")
+            body_part_description: Structured description of the body part
+            
+        Returns:
+            Formatted prompt string optimized for body-part generation
+        """
+        # Format body part name for display
+        body_part_display = body_part.replace('_', ' ')
+        
+        # Base prompt structure
+        prompt_parts = [
+            f"High resolution macro photograph of the {body_part_display} of the marine crustacean Campylaspis {species}.",
+            "Anatomically accurate morphology based strictly on taxonomic description."
+        ]
+        
+        # Add body part specific description
+        if body_part_description.strip():
+            prompt_parts.append(f"{body_part_description}.")
+        
+        # Add scientific photography style descriptors
+        prompt_parts.extend([
+            "Scientific realism, marine specimen photography,",
+            "neutral laboratory background, natural lighting,",
+            "high magnification, detailed texture, morphological accuracy."
+        ])
+        
+        return " ".join(prompt_parts)

@@ -43,5 +43,17 @@ try:
 except ImportError:
     pass
 
-if len(__all__) < 6:
-    print(f"Warning: Only {len(__all__)} out of 6 generation module components could be imported due to missing dependencies")
+try:
+    from .morphology_parser import MorphologyParser, build_morphology_prompt
+    __all__.extend(['MorphologyParser', 'build_morphology_prompt'])
+except ImportError:
+    pass
+
+try:
+    from .diffusion_renderer import MorphologyGuidedRenderer
+    __all__.append('MorphologyGuidedRenderer')
+except ImportError:
+    pass
+
+if len(__all__) < 11:
+    print(f"Warning: Only {len(__all__)} out of 11 generation module components could be imported due to missing dependencies")

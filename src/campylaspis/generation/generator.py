@@ -428,6 +428,293 @@ class ScientificImageGenerator:
         
         return images
     
+    def render_preserving_morphology(self, 
+                                   illustration_path: str,
+                                   prompt: Optional[str] = None,
+                                   morphology_strength: float = 0.95,
+                                   denoising_strength: float = 0.1,
+                                   num_images: int = 1,
+                                   seed: int = 42) -> List[Image.Image]:
+        """
+        Render scientific illustrations with morphology-preserving naturalistic enhancement.
+        
+        This mode preserves the exact anatomical structure while adding realistic rendering.
+        Uses very low denoising to maintain original morphology.
+        
+        Pipeline: illustration → strong edge conditioning + low denoising → minimal enhancement
+        
+        Args:
+            illustration_path: Path to scientific illustration
+            prompt: Optional text prompt for subtle enhancement (can be None for pure img2img)
+            morphology_strength: ControlNet conditioning strength (0.0-1.0, default 0.95 - very strong)
+            denoising_strength: Image-to-image denoising strength (0.0-1.0, default 0.1 - minimal change)
+            num_images: Number of images to generate
+            seed: Random seed for reproducible generation
+            
+        Returns:
+            List of rendered PIL Images preserving original morphology
+        """
+        if not HAS_DIFFUSERS:
+            raise RuntimeError("Diffusers library not available - required for morphology-preserving rendering")
+        
+        if not self.control_pipe:
+            raise RuntimeError("ControlNet pipeline not loaded - morphology-preserving rendering requires ControlNet")
+        
+        print(f"🔬 Morphology-preserving rendering mode")
+        print(f"🔍 Parameters: morphology_strength={morphology_strength}, denoising_strength={denoising_strength}")
+        
+        # Validate illustration file
+        is_valid, reason = validate_illustration_file(illustration_path)
+        if not is_valid:
+            raise ValueError(f"Invalid illustration file: {reason}")
+        
+        # Set seed for reproducibility
+        if HAS_TORCH:
+            generator = torch.Generator(device=self.device).manual_seed(seed)
+        else:
+            generator = None
+        
+        # Step 1: Load and prepare illustration
+        illustration = Image.open(illustration_path).convert('RGB')
+        
+        # Save original for comparison
+        try:
+            debug_dir = Path("outputs/smoke_test/debug")
+            debug_dir.mkdir(parents=True, exist_ok=True)
+            illustration.save(debug_dir / "original_illustration.png")
+            print(f"💾 Saved original illustration to {debug_dir / 'original_illustration.png'}")
+        except Exception as e:
+            print(f"⚠️  Could not save original illustration: {e}")
+        
+        # Step 2: Create strong edge conditioning for morphology preservation
+        try:
+            from .conditioning import ScientificConditioningProcessor
+            conditioning_processor = ScientificConditioningProcessor()
+            edge_map = conditioning_processor.prepare_structure_condition(illustration_path)
+        except ImportError:
+            try:
+                from conditioning import ScientificConditioningProcessor
+                conditioning_processor = ScientificConditioningProcessor()
+                edge_map = conditioning_processor.prepare_structure_condition(illustration_path)
+            except ImportError:
+                # Manual edge detection with strong parameters
+                if illustration.mode != 'L':
+                    gray = illustration.convert('L')
+                else:
+                    gray = illustration
+                
+                try:
+                    import cv2
+                    import numpy as np
+                    gray_array = np.array(gray)
+                    # Strong edge detection for morphology preservation
+                    edges = cv2.Canny(gray_array, 30, 100)  # Lower thresholds for more edges
+                    edge_map = Image.fromarray(edges, mode='L')
+                except ImportError:
+                    # Ultimate fallback: use original image
+                    edge_map = illustration.convert('L')
+        
+        # Convert edge map to RGB for ControlNet
+        if isinstance(edge_map, Image.Image):
+            if edge_map.mode != 'RGB':
+                edge_map = edge_map.convert('RGB')
+        else:
+            # Handle numpy array case
+            try:
+                import numpy as np
+                if hasattr(edge_map, 'shape'):
+                    if hasattr(edge_map, 'cpu'):
+                        edge_map = edge_map.cpu().numpy()
+                    edge_map = Image.fromarray((edge_map.squeeze() * 255).astype('uint8'), mode='L').convert('RGB')
+            except ImportError:
+                edge_map = illustration.convert('RGB')
+        
+        # Save edge map for debugging
+        try:
+            debug_dir = Path("outputs/smoke_test/debug")
+            edge_map.save(debug_dir / "morphology_edges.png")
+            print(f"💾 Saved morphology edges to {debug_dir / 'morphology_edges.png'}")
+        except Exception as e:
+            print(f"⚠️  Could not save morphology edges: {e}")
+        
+        # Step 3: Prepare prompt for minimal enhancement
+        if prompt is None or prompt.strip() == "":
+            # Pure image-to-image with minimal text guidance
+            final_prompt = "high resolution scientific illustration, detailed morphology, professional quality"
+        else:
+            # Apply appearance conditioning if available, but keep it subtle
+            enhanced_prompt, appearance_used = self._apply_appearance_conditioning(prompt)
+            if appearance_used:
+                print(f"🎨 Applied subtle appearance conditioning")
+            final_prompt = enhanced_prompt
+        
+        print(f"🔍 Using prompt: {final_prompt}")
+        
+        # Step 4: Generate with strong morphology preservation
+        try:
+            images = self.control_pipe(
+                prompt=[final_prompt] * num_images,
+                image=[illustration] * num_images,  # Use original illustration as base
+                control_image=[edge_map] * num_images,  # Strong edge conditioning
+                generator=generator,
+                num_inference_steps=15,  # Fewer steps for morphology preservation
+                guidance_scale=3.0,  # Lower guidance to reduce text influence
+                controlnet_conditioning_scale=morphology_strength,  # Very strong structure control
+                strength=denoising_strength  # Very low denoising to preserve morphology
+            ).images
+            
+            print(f"✅ Morphology-preserving rendering completed successfully")
+            
+            # Save comparison outputs
+            self._save_comparison_outputs(illustration, images[0], debug_dir)
+            
+        except Exception as e:
+            print(f"❌ Morphology-preserving rendering failed: {e}")
+            raise RuntimeError(f"Morphology-preserving rendering failed: {e}")
+        
+        return images
+    
+    def render_morphology_guided(self, 
+                                illustration_path: str,
+                                prompt: Optional[str] = None,
+                                controlnet_conditioning_scale: float = 1.0,
+                                strength: float = 0.4,
+                                num_images: int = 1,
+                                seed: int = 42) -> List[Image.Image]:
+        """
+        Render scientific illustrations with strict morphological fidelity using ControlNet + img2img.
+        
+        This mode uses StableDiffusionControlNetImg2ImgPipeline to ensure exact anatomical
+        structure preservation while adding realistic rendering enhancements.
+        
+        Args:
+            illustration_path: Path to scientific illustration
+            prompt: Optional text prompt for enhancement
+            controlnet_conditioning_scale: ControlNet conditioning strength (1.0 = strict preservation)
+            strength: img2img denoising strength (0.4 = moderate enhancement)
+            num_images: Number of images to generate
+            seed: Random seed for reproducible generation
+            
+        Returns:
+            List of rendered PIL Images with preserved morphology
+        """
+        try:
+            from .diffusion_renderer import MorphologyGuidedRenderer
+        except ImportError:
+            try:
+                from diffusion_renderer import MorphologyGuidedRenderer
+            except ImportError:
+                raise RuntimeError("MorphologyGuidedRenderer not available - required for morphology_guided mode")
+        
+        # Initialize renderer with same parameters as this generator
+        renderer = MorphologyGuidedRenderer(
+            model_path=self.model_path,
+            controlnet_path=self.controlnet_path,
+            device=self.device,
+            appearance_prior_dir=self.appearance_prior_dir if hasattr(self, 'appearance_prior_dir') else None
+        )
+        
+        # Render with strict morphological control
+        images, used_prompt, metadata = renderer.render_morphology_preserved(
+            illustration_path=illustration_path,
+            prompt=prompt,
+            controlnet_conditioning_scale=controlnet_conditioning_scale,
+            strength=strength,
+            num_images=num_images,
+            seed=seed
+        )
+        
+        # Save comparison outputs for debugging
+        try:
+            debug_dir = Path("outputs/smoke_test/debug")
+            debug_dir.mkdir(parents=True, exist_ok=True)
+            
+            original = Image.open(illustration_path)
+            renderer.save_comparison_outputs(original, images[0], debug_dir, "morphology_guided")
+            
+        except Exception as e:
+            print(f"⚠️  Could not save morphology-guided comparison outputs: {e}")
+        
+        return images
+    
+    def _save_comparison_outputs(self, original: Image.Image, rendered: Image.Image, output_dir: Path):
+        """
+        Save side-by-side comparison of original and rendered images.
+        
+        Args:
+            original: Original scientific illustration
+            rendered: Morphology-preserving rendered result
+            output_dir: Directory to save comparison outputs
+        """
+        try:
+            # Create side-by-side comparison
+            width1, height1 = original.size
+            width2, height2 = rendered.size
+            
+            # Ensure same height for side-by-side
+            max_height = max(height1, height2)
+            new_width1 = int(width1 * max_height / height1)
+            new_width2 = int(width2 * max_height / height2)
+            
+            # Resize images
+            original_resized = original.resize((new_width1, max_height), Image.Resampling.LANCZOS)
+            rendered_resized = rendered.resize((new_width2, max_height), Image.Resampling.LANCZOS)
+            
+            # Create combined image
+            combined_width = new_width1 + new_width2
+            combined = Image.new('RGB', (combined_width, max_height))
+            combined.paste(original_resized, (0, 0))
+            combined.paste(rendered_resized, (new_width1, 0))
+            
+            # Add labels
+            try:
+                from PIL import ImageDraw, ImageFont
+                draw = ImageDraw.Draw(combined)
+                # Try to use a font, fallback to default if not available
+                try:
+                    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 20)
+                except:
+                    font = ImageFont.load_default()
+                
+                # Add labels
+                draw.text((10, 10), "ORIGINAL", fill="red", font=font)
+                draw.text((new_width1 + 10, 10), "RENDERED", fill="green", font=font)
+                
+            except ImportError:
+                print("⚠️  PIL ImageDraw not available for labels")
+            
+            # Save comparison
+            comparison_path = output_dir / "morphology_comparison.png"
+            combined.save(comparison_path)
+            print(f"💾 Saved morphology comparison to {comparison_path}")
+            
+            # Save rendered result separately
+            rendered_path = output_dir / "rendered_result.png"
+            rendered.save(rendered_path)
+            print(f"💾 Saved rendered result to {rendered_path}")
+            
+        except Exception as e:
+            print(f"⚠️  Could not create comparison outputs: {e}")
+    
+    def _apply_appearance_conditioning(self, prompt: str) -> tuple[str, bool]:
+        """
+        Apply appearance conditioning to prompt if available.
+        
+        Args:
+            prompt: Original prompt
+            
+        Returns:
+            Tuple of (enhanced_prompt, was_enhanced)
+        """
+        if self.appearance_conditioner is not None:
+            try:
+                enhanced = self.appearance_conditioner.build_appearance_prompt_modifier(prompt)
+                return enhanced, True
+            except Exception as e:
+                print(f"⚠️  Appearance conditioning failed: {e}")
+                return prompt, False
+        return prompt, False
+    
     def generate_body_part(self, body_part: str,
                           species_name: str = "crustacean",
                           base_description: str = "",

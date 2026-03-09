@@ -1,0 +1,10 @@
+Scientific Specimen Generation Dataset Summary
+==================================================
+
+Total specimens processed: 1
+Images per specimen: 1
+Total images generated: 0
+Output directory: test_output2
+Metadata saved to: test_output2/metadata.json
+Successfully processed specimens: 0
+Failed specimens: 1

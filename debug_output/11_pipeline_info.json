@@ -1,0 +1,9 @@
+{
+  "diffusers_pipeline_class": "StableDiffusionControlNetImg2ImgPipeline",
+  "controlnet_loaded": true,
+  "img2img_used": true,
+  "appearance_prior_used": false,
+  "fallback_happened": false,
+  "device": "cuda",
+  "dtype": "torch.float16"
+}

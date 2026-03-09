@@ -1,0 +1,28 @@
+{
+  "illustration_used": "/home/maria-luiza-duda/datasets/campylaspis/processed/aculeata/images/aculeata_lateral_body.jpg",
+  "description_text": "Carapace: A little more than twice as long as high, with mid-dorsal groove bifurcating posteriorly; surface covered with numerous small spines.\nPseudorostrum: Two-ninths of total carapace length, prominent and sharply pointed; lower part serrated.\nEyelobe: Obsolete.\nAntenna I: First two segments studded with blunt spines; first segment nearly twice as long as second and more than twice as long as third.\nMaxilliped 2: Ischiobasis fairly long; terminal seta long and slender; carpus with five spines; propodus with tooth; dactyl with three spines.\nMaxilliped 3: Basis long, serrated; merus and carpus serrated.\nPereopod 1: Basis long, serrated.\nPereopod 2: Basis about half as long as rest; dactyl slender, tapered, with three spines.\nUropod: Peduncle serrated, more than twice as long as endopod; endopod longer than exopod, with spines.\nType locality: 0°46'S, 29°28'W–0°46.5'S, 29°24'W, 3459 m.",
+  "inferred_species": "aculeata",
+  "text_file_path": "/home/maria-luiza-duda/datasets/campylaspis/processed/aculeata/text/campylaspis_aculeata.txt",
+  "appearance_prior_used": null,
+  "mode": "morphology_guided",
+  "fallback_occurred": false,
+  "prompt_truncated": true,
+  "prompt_token_count": 76,
+  "prompt_view": "lateral",
+  "prompt_included_body_parts": [
+    "carapace",
+    "pseudorostrum",
+    "pereopod_2"
+  ],
+  "prompt_dropped_body_parts": [
+    "eyelobe",
+    "antenna_1",
+    "maxilliped_2",
+    "maxilliped_3",
+    "pereopod_1",
+    "uropod"
+  ],
+  "body_part_detected": true,
+  "description_parsing_failed": false,
+  "generation_failed_with_reason": null
+}

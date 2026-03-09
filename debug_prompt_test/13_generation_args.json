@@ -1,0 +1,14 @@
+{
+  "prompt": "Scientific macro-photographic reconstruction of TestSpecimen in strict lateral view.\nThe anatomy must exactly preserve the contour, appendage count, segmentation, and ornamentation present in the scientific illustration.\nMorphological details:\nCarapace: A little more than twice as long as high, with mid-dorsal groove bifurcating posteriorly; surface covered with numerous small spines.\nPseudorostrum: Two-ninths of total carapace length, prominent and sharply pointed; lower part serrated.\nEyelobe: Obsolete.\nAntenna I: First two segments studded with blunt spines; first segment nearly twice as long as second and more than twice as long as third.\nMaxilliped 2: Ischiobasis fairly long; terminal seta long and slender; carpus with five spines; propodus with tooth; dactyl with three spines.\nMaxilliped 3: Basis long, serrated; merus and carpus serrated.\nPereopod 1: Basis long, serrated.\nPereopod 2: Basis about half as long as rest; dactyl slender, tapered, with three spines.\nUropod: Peduncle serrated, more than twice as long as endopod; endopod longer than exopod, with spines.\nType locality: 0°46'S, 29°28'W–0°46.5'S, 29°24'W, 3459 m\nNatural marine specimen appearance, neutral laboratory background, realistic cuticle texture.",
+  "negative_prompt": "blurry, low quality, distorted, deformed, ugly, disfigured, cartoon, anime, text, watermark",
+  "controlnet_conditioning_scale": 1.0,
+  "strength": 0.4,
+  "guidance_scale": 7.5,
+  "num_inference_steps": 20,
+  "seed": 42,
+  "image_size": [
+    512,
+    512
+  ],
+  "token_count": 317
+}

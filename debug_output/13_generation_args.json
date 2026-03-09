@@ -1,0 +1,17 @@
+{
+  "prompt": "Campylaspis aculeata lateral view.\nExact illustration geometry: contour, appendages, segmentation.\nMorphology:\nCarapace: little more than\nPseudorostrum: Two-ninths of total\nPereopod 2: Basis ~ half\nUropod: Peduncle\nRealistic exoskeleton texture, natural lighting, corporeal biological specimen.",
+  "negative_prompt": "blurry, low quality, distorted, deformed, watermark, text, lobster, shrimp, crab, prawn, scorpion, spider, insect, cephalopod, octopus tentacles, claws, extra legs, extra appendages, fantasy anatomy, monster, alien, vertebrate eyes, fish fins",
+  "controlnet_conditioning_scale": 1.0,
+  "strength": 0.4,
+  "guidance_scale": 5.0,
+  "num_inference_steps": 12,
+  "seed": 42,
+  "image_size": [
+    512,
+    512
+  ],
+  "token_count": 76,
+  "memory_optimization": "enabled",
+  "xformers_attention": true,
+  "cpu_offload": true
+}

@@ -24,6 +24,13 @@ except ImportError:
     HAS_CV2 = False
     cv2 = None
 
+try:
+    from transformers import CLIPTokenizer
+    HAS_TRANSFORMERS = True
+except ImportError:
+    HAS_TRANSFORMERS = False
+    CLIPTokenizer = None
+
 from .appearance_prior import AppearancePrior
 
 
@@ -46,6 +53,14 @@ class AppearanceConditioner:
         
         if not HAS_SKLEARN:
             raise ImportError("scikit-learn is required for color palette extraction (pip install scikit-learn)")
+        
+        # Initialize CLIP tokenizer for token counting
+        self.tokenizer = None
+        if HAS_TRANSFORMERS:
+            try:
+                self.tokenizer = CLIPTokenizer.from_pretrained("openai/clip-vit-base-patch32")
+            except Exception as e:
+                print(f"⚠️  Could not load CLIP tokenizer: {e}")
         
         # Color name mappings for natural crustacean coloration
         self.color_mappings = {
@@ -159,7 +174,7 @@ class AppearanceConditioner:
             rgb: RGB tuple
             
         Returns:
-            Descriptive color name
+            Descriptive color name with crustacean-specific terminology
         """
         r, g, b = rgb
         
@@ -189,20 +204,44 @@ class AppearanceConditioner:
                     best_match = category
         
         if best_match:
-            # Return a random name from the category
+            # Return a random name from the category with crustacean-specific terminology
             names = self.color_names[best_match]['names']
-            return random.choice(names)
+            base_name = random.choice(names)
+            
+            # Add crustacean-specific modifiers
+            modifiers = [
+                "exoskeleton", "shell", "carapace", "body", "appendages",
+                "pigmentation", "coloration", "tone", "hue"
+            ]
+            
+            # For certain categories, add specific modifiers
+            if best_match == 'base_tones':
+                modifier = random.choice(["exoskeleton", "shell", "body"])
+            elif best_match == 'marine_beige':
+                modifier = random.choice(["exoskeleton", "shell", "marine"])
+            elif best_match == 'reddish_pigments':
+                modifier = random.choice(["pigmentation", "coloration", "hue"])
+            elif best_match == 'brownish_tones':
+                modifier = random.choice(["pigmentation", "tone", "coloration"])
+            elif best_match == 'greenish_hints':
+                modifier = random.choice(["pigmentation", "hue", "tint"])
+            elif best_match == 'dark_accent':
+                modifier = random.choice(["accent", "marking", "pigmentation"])
+            else:
+                modifier = random.choice(modifiers)
+            
+            return f"{base_name} {modifier}"
         
-        # Fallback: create a generic description
+        # Fallback: create a generic description with crustacean terminology
         intensity = (r + g + b) / 3
         if intensity > 200:
-            return "pale tone"
+            return "pale exoskeleton"
         elif intensity > 150:
-            return "medium tone"
+            return "medium shell tone"
         elif intensity > 100:
-            return "dark tone"
+            return "dark pigmentation"
         else:
-            return "deep pigmentation"
+            return "deep marine coloration"
     
     def build_color_prompt_modifier(self, palette: List[Tuple[int, int, int]]) -> str:
         """
@@ -242,15 +281,35 @@ class AppearanceConditioner:
         
         return modifier
     
-    def build_appearance_prompt_modifier(self) -> str:
+    def build_appearance_prompt_modifier(self, base_prompt: str = "") -> str:
         """
         Build a comprehensive appearance prompt modifier by sampling from the dataset.
         
         Samples multiple images from the appearance prior, extracts their color palettes,
         and combines them into a rich textual description of natural crustacean appearance.
         
+        Args:
+            base_prompt: Base prompt to enhance with appearance conditioning
+            
         Returns:
-            Textual prompt modifier describing realistic crustacean coloration
+            Enhanced prompt with appearance conditioning
+        """
+        # Get the appearance modifier
+        appearance_modifier = self._build_appearance_modifier()
+        
+        # If no base prompt, return just the modifier
+        if not base_prompt or base_prompt.strip() == "":
+            return appearance_modifier
+        
+        # Combine with base prompt, ensuring token limits
+        return self._ensure_token_limit(base_prompt, appearance_modifier, max_tokens=77)
+    
+    def _build_appearance_modifier(self) -> str:
+        """
+        Internal method to build the appearance modifier string.
+        
+        Returns:
+            Appearance modifier string
         """
         # Sample multiple reference images
         n_samples = min(5, len(self.appearance_prior))  # Sample up to 5 images
@@ -350,6 +409,82 @@ class AppearanceConditioner:
             return f"{base_modifier}, {variation}"
         
         return base_modifier
+    
+    def _count_clip_tokens(self, text: str) -> int:
+        """
+        Count the number of CLIP tokens in a text string.
+        
+        Args:
+            text: Text to count tokens for
+            
+        Returns:
+            Number of CLIP tokens
+        """
+        if self.tokenizer is not None:
+            try:
+                tokens = self.tokenizer.encode(text)
+                return len(tokens)
+            except Exception as e:
+                print(f"⚠️  Token counting failed: {e}")
+        
+        # Fallback: rough estimate based on word count (CLIP tokens are usually 1-2 per word)
+        words = text.split()
+        return len(words) * 2  # Conservative estimate
+    
+    def _ensure_token_limit(self, base_prompt: str, appearance_modifier: str, max_tokens: int = 77) -> str:
+        """
+        Ensure the combined prompt stays within CLIP token limits.
+        
+        Args:
+            base_prompt: Base morphological prompt
+            appearance_modifier: Appearance conditioning text
+            max_tokens: Maximum allowed tokens (default 77 for CLIP)
+            
+        Returns:
+            Combined prompt within token limits
+        """
+        # Start with base prompt
+        combined = base_prompt
+        
+        # Count base prompt tokens
+        base_tokens = self._count_clip_tokens(base_prompt)
+        remaining_tokens = max_tokens - base_tokens
+        
+        if remaining_tokens <= 0:
+            print(f"⚠️  Base prompt already at token limit ({base_tokens}/{max_tokens})")
+            return base_prompt
+        
+        # Split appearance modifier into components
+        parts = appearance_modifier.split(", ")
+        if not parts:
+            return combined
+        
+        # Base appearance description (usually first part)
+        base_appearance = parts[0]
+        base_appearance_tokens = self._count_clip_tokens(base_appearance)
+        
+        if base_appearance_tokens > remaining_tokens:
+            print(f"⚠️  Cannot add appearance conditioning - insufficient tokens ({remaining_tokens} remaining)")
+            return combined
+        
+        # Add base appearance
+        combined = f"{combined}, {base_appearance}"
+        remaining_tokens -= base_appearance_tokens
+        
+        # Add additional color descriptors if space allows
+        additional_parts = parts[1:]
+        for part in additional_parts:
+            part_tokens = self._count_clip_tokens(part)
+            if part_tokens <= remaining_tokens:
+                combined = f"{combined}, {part}"
+                remaining_tokens -= part_tokens
+            else:
+                break
+        
+        final_tokens = self._count_clip_tokens(combined)
+        print(f"📝 Final prompt tokens: {final_tokens}/{max_tokens}")
+        
+        return combined
     
     def get_last_color_palette(self) -> List[List[int]]:
         """

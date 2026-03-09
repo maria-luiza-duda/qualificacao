@@ -1,0 +1,14 @@
+High-resolution macro photograph of the marine crustacean TestSpecimen.
+Morphological constraints:
+- carapace: long, bifurcating, covered, numerous, small
+- pseudorostrum: pointed, sharp
+- antenna i: long, blunt, studded
+- maxilliped 2: slender, long, five
+- maxilliped 3: long, serrated
+- pereopod 1: long
+- pereopod 2: slender, long, tapered
+- uropod: long, serrated
+
+The anatomy must strictly follow the provided scientific illustration.
+Scientific realism, marine specimen photography, neutral laboratory background,
+natural lighting, high magnification, detailed texture, morphological accuracy.

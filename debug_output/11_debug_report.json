@@ -1,0 +1,31 @@
+{
+  "illustration_used": "/home/maria-luiza-duda/datasets/campylaspis/processed/aculeata/images/aculeata_lateral_body.jpg",
+  "description_text": "Carapace: A little more than twice as long as high, with mid-dorsal groove bifurcating posteriorly; surface covered with numerous small spines.\nPseudorostrum: Two-ninths of total carapace length, prominent and sharply pointed; lower part serrated.\nEyelobe: Obsolete.\nAntenna I: First two segments studded with blunt spines; first segment nearly twice as long as second and more than twice as long as third.\nMaxilliped 2: Ischiobasis fairly long; terminal seta long and slender; carpus with five spines; propodus with tooth; dactyl with three spines.\nMaxilliped 3: Basis long, serrated; merus and carpus serrated.\nPereopod 1: Basis long, serrated.\nPereopod 2: Basis about half as long as rest; dactyl slender, tapered, with three spines.\nUropod: Peduncle serrated, more than twice as long as endopod; endopod longer than exopod, with spines.\nType locality: 0°46'S, 29°28'W–0°46.5'S, 29°24'W, 3459 m.",
+  "inferred_species": "aculeata",
+  "text_file_path": "/home/maria-luiza-duda/datasets/campylaspis/processed/aculeata/text/campylaspis_aculeata.txt",
+  "appearance_prior_used": null,
+  "mode": "morphology_guided",
+  "fallback_occurred": false,
+  "prompt_truncated": true,
+  "prompt_token_count": 76,
+  "prompt_view": "lateral",
+  "prompt_included_body_parts": [
+    "carapace",
+    "pseudorostrum",
+    "pereopod_2",
+    "uropod"
+  ],
+  "prompt_dropped_body_parts": [
+    "eyelobe",
+    "antenna_1",
+    "maxilliped_2",
+    "maxilliped_3",
+    "pereopod_1"
+  ],
+  "full_scientific_phrases_used": true,
+  "summarization_step_applied": true,
+  "prompt_truncation_occurred": true,
+  "body_part_detected": true,
+  "description_parsing_failed": false,
+  "generation_failed_with_reason": "Morphology-guided rendering failed: CUDA out of memory. Tried to allocate 22.00 MiB. GPU 0 has a total capacity of 3.63 GiB of which 47.31 MiB is free. Process 81600 has 50.00 MiB memory in use. Including non-PyTorch memory, this process has 2.84 GiB memory in use. Of the allocated memory 2.73 GiB is allocated by PyTorch, and 48.38 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+}

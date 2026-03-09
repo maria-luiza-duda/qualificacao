@@ -57,16 +57,34 @@ def test_appearance_conditioning():
         full_modifier = conditioner.build_appearance_prompt_modifier()
         print(f"✅ Generated full modifier: {full_modifier}")
         
-        # Test color variation modifier
-        print("\n🎭 Testing color variation modifier...")
-        variation_modifier = conditioner.get_color_variation_modifier(full_modifier, variation_strength=0.5)
-        print(f"✅ Generated variation modifier: {variation_modifier}")
+        # Test token counting and limiting
+        print("\n🔢 Testing CLIP token counting...")
+        token_count = conditioner._count_clip_tokens(full_modifier)
+        print(f"📊 Modifier token count: {token_count}")
         
-        # Test with different variation strengths
-        print("\n🎭 Testing different variation strengths...")
-        for strength in [0.1, 0.5, 0.8]:
-            var_mod = conditioner.get_color_variation_modifier(full_modifier, strength)
-            print(f"   Strength {strength}: {var_mod}")
+        # Test prompt enhancement with token limiting
+        base_prompt = "High-resolution macro photograph of the marine crustacean Campylaspis aculeata. Morphological constraints: - carapace: smooth - pseudorostrum: elongated - pereopods: slender"
+        print(f"\n📝 Base prompt: '{base_prompt[:60]}...'")
+        
+        enhanced_prompt = conditioner.build_appearance_prompt_modifier(base_prompt)
+        print(f"✨ Enhanced prompt: '{enhanced_prompt[:100]}...'")
+        
+        enhanced_tokens = conditioner._count_clip_tokens(enhanced_prompt)
+        print(f"📊 Enhanced token count: {enhanced_tokens}/77 (CLIP limit)")
+        
+        # Test token limit enforcement
+        print("\n⚖️  Testing token limit enforcement...")
+        long_base = " ".join(["very"] * 30) + " long morphological description that would exceed token limits"
+        limited_prompt = conditioner._ensure_token_limit(long_base, full_modifier, max_tokens=77)
+        limited_tokens = conditioner._count_clip_tokens(limited_prompt)
+        print(f"📊 Limited token count: {limited_tokens}/77")
+        
+        # Test improved color classification
+        print("\n🏷️  Testing improved color classification...")
+        test_colors = [(200, 180, 150), (220, 210, 200), (180, 120, 100)]
+        for color in test_colors:
+            classification = conditioner._classify_color(color)
+            print(f"   RGB{color} → '{classification}'")
         
         # Clean up
         for img in sample_images:

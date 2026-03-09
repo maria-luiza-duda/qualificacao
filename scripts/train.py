@@ -39,6 +39,9 @@ def parse_args():
     p.add_argument("--max_images", type=int, default=8)
     p.add_argument("--image_size", type=int, default=224)
     p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--data_condition", choices=["real_only", "real_plus_synth", "synth_only"], default="real_only", help="Which data condition to run: baseline or include synthetic")
+    p.add_argument("--synth_jsonl", type=Path, default=None, help="Path to synthetic examples jsonl (each entry same format as train.jsonl)")
+    p.add_argument("--synth_keep_frac", type=float, default=1.0, help="Fraction of synthetic examples to keep (for simple filtering/ablation)")
     p.add_argument("--manifest", type=Path, default=None, help="Path to manifest.jsonl to build a global label_map")
     p.add_argument("--label_map_json", type=Path, default=None, help="Optional JSON file with precomputed label_map {species: id}")
     p.add_argument("--freeze_text_encoder", action="store_true", help="If set and multimodal, freeze text encoder weights and set it to eval()")
@@ -183,7 +186,15 @@ def evaluate(model, dataloader, device, tokenizer=None):
 
 def main():
     args = parse_args()
+    # Create nested run dir for reproducibility: separate folder per condition and seed
+    base_out = args.outdir
+    run_dir = base_out / f"{args.data_condition}_seed{args.seed}"
+    run_dir.mkdir(parents=True, exist_ok=True)
+    args.outdir = run_dir
     args.outdir.mkdir(parents=True, exist_ok=True)
+    # Save args for reproducibility
+    with open(args.outdir / "args.json", "w", encoding="utf-8") as af:
+        json.dump({k: (str(v) if isinstance(v, Path) else v) for k, v in vars(args).items()}, af, ensure_ascii=False, indent=2)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logging.info("Using device %s", device)
@@ -212,6 +223,25 @@ def main():
     train_items = load_jsonl(args.train_jsonl)
     val_items = load_jsonl(args.val_jsonl)
 
+    # Optionally incorporate synthetic items into the training set according to data_condition
+    if args.data_condition != "real_only":
+        if args.synth_jsonl is None:
+            raise RuntimeError("--synth_jsonl must be provided when using synthetic conditions")
+        if not args.synth_jsonl.exists():
+            raise RuntimeError(f"synth_jsonl not found: {args.synth_jsonl}")
+        synth_items = load_jsonl(args.synth_jsonl)
+        # simple filtering / ablation by sampling fraction
+        if args.synth_keep_frac < 1.0:
+            import random as _rnd
+            _rnd.seed(args.seed)
+            k = int(len(synth_items) * float(args.synth_keep_frac))
+            synth_items = _rnd.sample(synth_items, k)
+
+        if args.data_condition == "real_plus_synth":
+            train_items = list(train_items) + list(synth_items)
+        else:  # synth_only
+            train_items = list(synth_items)
+
     # build or load global label_map
     if args.label_map_json is not None:
         if not args.label_map_json.exists():
@@ -239,7 +269,14 @@ def main():
 
     # datasets and loaders
     collate = make_collate_fn(image_size=args.image_size, max_images=args.max_images, device=None)
-    train_ds = CampylaspisDataset(args.train_jsonl, label_map, image_size=args.image_size, max_images=args.max_images)
+    # Create dataset from in-memory train_items by writing a temporary jsonl when necessary
+    # The CampylaspisDataset accepts a path; to avoid changing its API we will write a temp file under outdir
+    train_jsonl_path = args.outdir / "_train_items.jsonl"
+    with open(train_jsonl_path, "w", encoding="utf-8") as tf:
+        for it in train_items:
+            tf.write(json.dumps(it, ensure_ascii=False) + "\n")
+
+    train_ds = CampylaspisDataset(train_jsonl_path, label_map, image_size=args.image_size, max_images=args.max_images)
     val_ds = CampylaspisDataset(args.val_jsonl, label_map, image_size=args.image_size, max_images=args.max_images)
 
     train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True, collate_fn=collate, num_workers=4)

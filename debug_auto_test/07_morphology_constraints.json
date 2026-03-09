@@ -1,0 +1,39 @@
+{
+  "carapace": [
+    "long",
+    "bifurcating",
+    "covered",
+    "numerous",
+    "small"
+  ],
+  "pseudorostrum": [
+    "pointed",
+    "sharp"
+  ],
+  "antenna i": [
+    "long",
+    "blunt",
+    "studded"
+  ],
+  "maxilliped 2": [
+    "slender",
+    "long",
+    "five"
+  ],
+  "maxilliped 3": [
+    "long",
+    "serrated"
+  ],
+  "pereopod 1": [
+    "long"
+  ],
+  "pereopod 2": [
+    "slender",
+    "long",
+    "tapered"
+  ],
+  "uropod": [
+    "long",
+    "serrated"
+  ]
+}

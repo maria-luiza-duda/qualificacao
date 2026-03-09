@@ -1,0 +1,9 @@
+Summary of unimodal vs multimodal
+--------------------------------
+Unimodal F1: mean=0.2215 std=0.0966
+Multimodal F1: mean=0.4669 std=0.0435
+Wilcoxon F1: stat=0.0000 p=6.250000e-02
+
+Unimodal Acc: mean=0.3286 std=0.0753
+Multimodal Acc: mean=0.5788 std=0.0476
+Wilcoxon Acc: stat=0.0000 p=6.250000e-02

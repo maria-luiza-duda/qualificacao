@@ -1,0 +1,18 @@
+{
+  "species_name": "Campylaspis aculeata",
+  "view": "lateral",
+  "token_count": 60,
+  "truncated": false,
+  "included_body_parts": [
+    "carapace",
+    "pseudorostrum",
+    "pereopod_2",
+    "uropod",
+    "maxilliped_3",
+    "maxilliped_2",
+    "eyelobe",
+    "antenna_1",
+    "pereopod_1"
+  ],
+  "dropped_body_parts": []
+}

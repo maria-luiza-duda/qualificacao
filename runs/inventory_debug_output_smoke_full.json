@@ -1,0 +1,1294 @@
+{
+  "total_folders": 44,
+  "by_category": {
+    "debug": 7,
+    "outputs": 32,
+    "smoke": 5
+  },
+  "rows": [
+    {
+      "folder": "debug_auto_test",
+      "category": "debug",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_pipeline_info.json",
+        "12_generation_args.json"
+      ],
+      "notes": [],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "09_prompt.txt",
+        "10_negative_prompt.txt",
+        "11_pipeline_info.json",
+        "12_generation_args.json"
+      ]
+    },
+    {
+      "folder": "debug_output",
+      "category": "debug",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 12,
+      "guidance_scale": 5.0,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ],
+      "notes": [
+        "generation_failed",
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "11_debug_report.json",
+        "11_pipeline_info.json"
+      ]
+    },
+    {
+      "folder": "debug_prompt_final",
+      "category": "debug",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_pipeline_info.json",
+        "13_generation_args.json",
+        "15_debug_report.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "09_prompt.txt",
+        "10_negative_prompt.txt",
+        "11_pipeline_info.json",
+        "12_prompt_info.json"
+      ]
+    },
+    {
+      "folder": "debug_prompt_final2",
+      "category": "debug",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_pipeline_info.json",
+        "13_generation_args.json",
+        "15_debug_report.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "09_prompt.txt",
+        "10_negative_prompt.txt",
+        "11_pipeline_info.json",
+        "12_prompt_info.json"
+      ]
+    },
+    {
+      "folder": "debug_prompt_test",
+      "category": "debug",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_pipeline_info.json",
+        "13_generation_args.json",
+        "15_debug_report.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "09_prompt.txt",
+        "10_negative_prompt.txt",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ]
+    },
+    {
+      "folder": "debug_prompt_test2",
+      "category": "debug",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_pipeline_info.json",
+        "13_generation_args.json",
+        "15_debug_report.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "09_prompt.txt",
+        "10_negative_prompt.txt",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ]
+    },
+    {
+      "folder": "debug_test",
+      "category": "debug",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "08_pipeline_info.json",
+        "09_generation_args.json"
+      ],
+      "notes": [],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_pipeline_info.json",
+        "09_generation_args.json"
+      ]
+    },
+    {
+      "folder": "outputs/aculeata_final_test",
+      "category": "outputs",
+      "mode": "morphology_guided",
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 60,
+      "guidance_scale": 3.0,
+      "strength": 0.08,
+      "controlnet_scale": 2.0,
+      "strict_morphology": true,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": 3,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png",
+        "specimen_02.png",
+        "specimen_03.png"
+      ]
+    },
+    {
+      "folder": "outputs/aculeata_photo_with_prior",
+      "category": "outputs",
+      "mode": "morphology_guided",
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 50,
+      "guidance_scale": 4.5,
+      "strength": 0.35,
+      "controlnet_scale": 1.8,
+      "strict_morphology": true,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": true,
+      "seed": 77,
+      "num_images": 1,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png"
+      ]
+    },
+    {
+      "folder": "outputs/aculeata_photo_with_prior_v2",
+      "category": "outputs",
+      "mode": "morphology_guided",
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 70,
+      "guidance_scale": 4.8,
+      "strength": 0.42,
+      "controlnet_scale": 1.9,
+      "strict_morphology": true,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": true,
+      "seed": 123,
+      "num_images": 3,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png",
+        "specimen_02.png",
+        "specimen_03.png"
+      ]
+    },
+    {
+      "folder": "outputs/aculeata_photorealistic",
+      "category": "outputs",
+      "mode": "morphology_guided",
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 70,
+      "guidance_scale": 4.5,
+      "strength": 0.35,
+      "controlnet_scale": 1.8,
+      "strict_morphology": true,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": false,
+      "seed": 123,
+      "num_images": 3,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png",
+        "specimen_02.png",
+        "specimen_03.png"
+      ]
+    },
+    {
+      "folder": "outputs/aculeata_photorealistic_v3",
+      "category": "outputs",
+      "mode": "morphology_guided",
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 90,
+      "guidance_scale": 5.0,
+      "strength": 0.45,
+      "controlnet_scale": 1.9,
+      "strict_morphology": true,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": 3,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png",
+        "specimen_02.png",
+        "specimen_03.png"
+      ]
+    },
+    {
+      "folder": "outputs/aculeata_photorealistic_v4_unlocked",
+      "category": "outputs",
+      "mode": "morphology_guided",
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 100,
+      "guidance_scale": 6.5,
+      "strength": 0.62,
+      "controlnet_scale": 1.35,
+      "strict_morphology": false,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": 2,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png",
+        "specimen_02.png"
+      ]
+    },
+    {
+      "folder": "outputs/aculeata_photorealistic_v5_extreme",
+      "category": "outputs",
+      "mode": "morphology_guided",
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 100,
+      "guidance_scale": 7.0,
+      "strength": 0.72,
+      "controlnet_scale": 1.0,
+      "strict_morphology": false,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": 1,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png"
+      ]
+    },
+    {
+      "folder": "outputs/aculeata_photorealistic_v6_no_controlnet",
+      "category": "outputs",
+      "mode": "morphology_guided_no_controlnet",
+      "pipeline": "StableDiffusionImg2ImgPipeline",
+      "steps": 100,
+      "guidance_scale": 7.5,
+      "strength": 0.8,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": true,
+      "seed": 99,
+      "num_images": 1,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png"
+      ]
+    },
+    {
+      "folder": "outputs/aculeata_ultra_conservative",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": []
+    },
+    {
+      "folder": "outputs/batch_illustration_only",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": []
+    },
+    {
+      "folder": "outputs/batch_text_only",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": []
+    },
+    {
+      "folder": "outputs/batch_text_plus_illustration",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": []
+    },
+    {
+      "folder": "outputs/debug_aculeata",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 8,
+      "guidance_scale": 4.0,
+      "strength": 0.25,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "04_full_prompt_before_compression.txt",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "11_debug_report.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_aculeata_fullphrases",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "11_debug_report.json",
+        "11_pipeline_info.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_aculeata_promptfix",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 8,
+      "guidance_scale": 4.0,
+      "strength": 0.25,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "04_full_prompt_before_compression.txt",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "11_debug_report.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_aculeata_realtext",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_pipeline_info.json",
+        "13_generation_args.json",
+        "15_debug_report.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "09_prompt.txt",
+        "10_negative_prompt.txt",
+        "11_pipeline_info.json",
+        "12_prompt_info.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_aculeata_safetytest",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 8,
+      "guidance_scale": 4.0,
+      "strength": 0.25,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ],
+      "notes": [
+        "generation_failed",
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "11_debug_report.json",
+        "11_pipeline_info.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_aculeata_safetytest2",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 8,
+      "guidance_scale": 4.0,
+      "strength": 0.25,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "11_debug_report.json",
+        "11_pipeline_info.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_cpu_test",
+      "category": "outputs",
+      "mode": "morphology_guided_no_controlnet",
+      "pipeline": "StableDiffusionImg2ImgPipeline",
+      "steps": 6,
+      "guidance_scale": 3.0,
+      "strength": 0.15,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": true,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ],
+      "notes": [
+        "generation_failed",
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "04_full_prompt_before_compression.txt",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "12_prompt_info.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_fullphrase_realistic",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "12_prompt_info.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_nan_trace",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "04_full_prompt_before_compression.txt",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "12_prompt_info.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_no_controlnet",
+      "category": "outputs",
+      "mode": "morphology_guided_no_controlnet",
+      "pipeline": "StableDiffusionImg2ImgPipeline",
+      "steps": 6,
+      "guidance_scale": 3.0,
+      "strength": 0.15,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": true,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "04_full_prompt_before_compression.txt",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "12_prompt_info.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_no_controlnet_fix",
+      "category": "outputs",
+      "mode": "morphology_guided_no_controlnet",
+      "pipeline": "StableDiffusionImg2ImgPipeline",
+      "steps": 6,
+      "guidance_scale": 3.0,
+      "strength": 0.15,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": true,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "04_full_prompt_before_compression.txt",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "12_prompt_info.json"
+      ]
+    },
+    {
+      "folder": "outputs/debug_test",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "08_pipeline_info.json",
+        "09_generation_args.json",
+        "11_debug_report.json"
+      ],
+      "notes": [],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_pipeline_info.json",
+        "09_generation_args.json",
+        "10_output_image.png"
+      ]
+    },
+    {
+      "folder": "outputs/debug_test2",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "08_pipeline_info.json",
+        "09_generation_args.json",
+        "11_debug_report.json"
+      ],
+      "notes": [],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_pipeline_info.json",
+        "09_generation_args.json",
+        "10_output_image.png"
+      ]
+    },
+    {
+      "folder": "outputs/final_realistic_prompt]",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 7.5,
+      "strength": 0.4,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": true,
+      "seed": 42,
+      "num_images": null,
+      "source_files": [
+        "11_debug_report.json",
+        "11_pipeline_info.json",
+        "13_generation_args.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "01_input_illustration.png",
+        "02_resized_input.png",
+        "03_edge_map_raw.png",
+        "04_edge_map_clean.png",
+        "05_prompt.txt",
+        "06_negative_prompt.txt",
+        "07_morphology_constraints.json",
+        "08_full_description.txt",
+        "11_debug_report.json",
+        "11_pipeline_info.json"
+      ]
+    },
+    {
+      "folder": "outputs/my_photos",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": []
+    },
+    {
+      "folder": "outputs/my_photos_cpu_fix",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": []
+    },
+    {
+      "folder": "outputs/my_photos_cpu_fix2",
+      "category": "outputs",
+      "mode": "morphology_guided",
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 20,
+      "guidance_scale": 6.5,
+      "strength": 0.45,
+      "controlnet_scale": 1.0,
+      "strict_morphology": null,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": 1,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png"
+      ]
+    },
+    {
+      "folder": "outputs/my_photos_strict_morph",
+      "category": "outputs",
+      "mode": "morphology_guided",
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 50,
+      "guidance_scale": 7.0,
+      "strength": 0.2,
+      "controlnet_scale": 1.35,
+      "strict_morphology": true,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": 1,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png"
+      ]
+    },
+    {
+      "folder": "outputs/my_photos_strict_morph_v2",
+      "category": "outputs",
+      "mode": "morphology_guided",
+      "pipeline": "StableDiffusionControlNetImg2ImgPipeline",
+      "steps": 50,
+      "guidance_scale": 7.0,
+      "strength": 0.2,
+      "controlnet_scale": 1.35,
+      "strict_morphology": true,
+      "stable_mode": false,
+      "appearance_prior": "/home/maria-luiza-duda/datasets/appearance_prior/cumacea_photos",
+      "appearance_prior_used": false,
+      "seed": 42,
+      "num_images": 1,
+      "source_files": [
+        "generation_metadata.json"
+      ],
+      "notes": [
+        "prompt_truncated"
+      ],
+      "all_files_sample": [
+        "05_prompt.txt",
+        "generation_metadata.json",
+        "specimen_01.png"
+      ]
+    },
+    {
+      "folder": "outputs/smoke_test",
+      "category": "outputs",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [
+        "metadata.json"
+      ],
+      "notes": [],
+      "all_files_sample": [
+        "generation_summary.txt",
+        "metadata.json"
+      ]
+    },
+    {
+      "folder": "test_output",
+      "category": "smoke",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [
+        "metadata.json"
+      ],
+      "notes": [],
+      "all_files_sample": [
+        "generation_summary.txt",
+        "metadata.json"
+      ]
+    },
+    {
+      "folder": "test_output2",
+      "category": "smoke",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [
+        "metadata.json"
+      ],
+      "notes": [],
+      "all_files_sample": [
+        "generation_summary.txt",
+        "metadata.json"
+      ]
+    },
+    {
+      "folder": "test_output3",
+      "category": "smoke",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": []
+    },
+    {
+      "folder": "test_output4",
+      "category": "smoke",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": []
+    },
+    {
+      "folder": "test_output5",
+      "category": "smoke",
+      "mode": null,
+      "pipeline": null,
+      "steps": null,
+      "guidance_scale": null,
+      "strength": null,
+      "controlnet_scale": null,
+      "strict_morphology": null,
+      "stable_mode": null,
+      "appearance_prior": null,
+      "appearance_prior_used": null,
+      "seed": null,
+      "num_images": null,
+      "source_files": [],
+      "notes": [],
+      "all_files_sample": []
+    }
+  ]
+}

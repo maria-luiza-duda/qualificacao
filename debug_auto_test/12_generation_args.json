@@ -1,0 +1,13 @@
+{
+  "prompt": "High-resolution macro photograph of the marine crustacean TestSpecimen.\nMorphological constraints:\n- carapace: long, bifurcating, covered, numerous, small\n- pseudorostrum: pointed, sharp\n- antenna i: long, blunt, studded\n- maxilliped 2: slender, long, five\n- maxilliped 3: long, serrated\n- pereopod 1: long\n- pereopod 2: slender, long, tapered\n- uropod: long, serrated\n\nThe anatomy must strictly follow the provided scientific illustration.\nScientific realism, marine specimen photography, neutral laboratory background,\nnatural lighting, high magnification, detailed texture, morphological accuracy.",
+  "negative_prompt": "blurry, low quality, distorted, deformed, ugly, disfigured, cartoon, anime, text, watermark",
+  "controlnet_conditioning_scale": 1.0,
+  "strength": 0.4,
+  "guidance_scale": 7.5,
+  "num_inference_steps": 20,
+  "seed": 42,
+  "image_size": [
+    512,
+    512
+  ]
+}

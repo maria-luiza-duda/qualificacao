@@ -1,0 +1,40 @@
+{
+  "dataset_info": {
+    "name": "scientific_specimen_generation_dataset",
+    "description": "Generated realistic specimen images from taxonomic descriptions",
+    "num_specimens": 1,
+    "images_per_specimen": 1,
+    "total_images": 1
+  },
+  "specimens": [
+    {
+      "id": 0,
+      "error": "Diffusers library not available or models not loaded",
+      "illustration_source": "aculeata_lateral_body.jpg",
+      "description": "carapace: Smooth carapace. pseudorostrum: elongated pseudorostrum"
+    },
+    {
+      "id": 0,
+      "error": "cannot access local variable 'validate_illustration_file' where it is not associated with a value",
+      "illustration_source": "aculeata_lateral_body.jpg",
+      "description": "carapace: Smooth carapace. pseudorostrum: elongated pseudorostrum"
+    }
+  ],
+  "generation_config": {
+    "num_images_per_specimen": 1,
+    "base_seed": 42,
+    "model": "runwayml/stable-diffusion-v1-5",
+    "controlnet": "lllyasviel/sd-controlnet-canny",
+    "device": "auto",
+    "generation_mode": "morphology_guided",
+    "structure_strength": 0.9,
+    "appearance_prior_used": false,
+    "appearance_prior_dataset": null,
+    "reference_images_sampled": 0,
+    "color_palette_used": [],
+    "morphology_strength": null,
+    "denoising_strength": null,
+    "controlnet_conditioning_scale": 1.0,
+    "img2img_strength": 0.4
+  }
+}
